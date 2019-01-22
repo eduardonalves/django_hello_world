@@ -1,0 +1,16 @@
+<!-- templates/registration/login.html -->
+{%  extends "layout.html" %}
+{% block conteudo %}
+<h2>Register</h2>
+<form method="post">
+	{% csrf_token %}
+	{% for field in form %}
+	<div class="form-group">
+  		{{ field.label_tag }}
+  		{{ field }}
+  		{{ field.errors }}
+  	</div>
+  	{% endfor %}
+  	<button type="submit">Register</button>
+</form>
+{% endblock %}

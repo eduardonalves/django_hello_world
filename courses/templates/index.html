@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block conteudo %}
+{% load static %}
+    <div class="row mb-2">
+        {% for course in courses %}
+        <div class="col-md-6">
+          <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+              <strong class="d-inline-block mb-2 text-primary">{{ course.name }} {{course.pk}}</strong>
+              <h3 class="mb-0">
+                <a class="text-dark" href="{{course.get_absolute_url}}">Matrículas Abertas </a>
+                <!--<a class="text-dark" href="{% url 'details' course.slug %}">Matrículas Abertas</a>-->
+              </h3>
+              <div class="mb-1 text-muted">{{ course.start_date }}</div>
+              <p class="card-text mb-auto">{{ course.description | linebreaks}}</p>
+              <a href="#">{{course.slug}}</a>
+            </div>
+            {% if course.image %}
+              <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;" src="{{course.image.url}}" data-holder-rendered="true">
+            {% else %}
+              <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;" src="{% static 'img/download.png' %}" data-holder-rendered="true">
+            {%endif%}
+          </div>
+        </div>
+        
+        {% empty %}
+        <div class="col-md-6">
+          <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+              <strong class="d-inline-block mb-2 text-primary">Nenhum curso disponível</strong>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+     
+{%endblock%}    
+
+    
+    

@@ -1,0 +1,17 @@
+<!-- templates/registration/login.html -->
+{%  extends "layout.html" %}
+{% block conteudo %}
+<h2>Login</h2>
+<form method="post">
+	{% csrf_token %}
+	{% for field in form %}
+	<div class="form-group">
+  		{{ field.label_tag }}
+  		{{ field }}
+  		{{ field.errors }}
+  	</div>
+  	{% endfor %}
+  	<button type="submit">Login</button>
+  	<a href="{% url 'password_reset' %}">Esqueceu a senha?</a>
+</form>
+{% endblock %}
